@@ -25,7 +25,7 @@ public class EnemyBehavior : MonoBehaviour
     private GameObject player;
     [SerializeField]
     private float shootCooldown;
-    private bool canShoot;
+    private bool canShoot=true;
 
     void Start()
     {
@@ -53,7 +53,7 @@ public class EnemyBehavior : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Invoke("Shoot", shootCooldown);
+        Shoot();
 
         //moves enemy
         rb2d.velocity = new Vector2(speed * direction, rb2d.velocity.y);
@@ -99,14 +99,17 @@ public class EnemyBehavior : MonoBehaviour
 
     private void Shoot()
     {
-
-        canShoot = false;
-        Vector2 playerPos = player.transform.position;
-        Vector2 shootVector = playerPos - (Vector2)gameObject.transform.position;
-        shootVector = new Vector2(horizontalProjectileSpeed * shootVector.x, verticalProjectileSpeed + shootVector.y);
-        GameObject newprojectile = Instantiate(projectile, transform);
-        newprojectile.GetComponent<Rigidbody2D>().velocity = shootVector;
-        Invoke("ShootBool", shootCooldown);
+        if (canShoot)
+        {
+            canShoot = false;
+            Vector2 enemyPos = (Vector2)gameObject.transform.position;
+            Vector2 playerPos = player.transform.position;
+            Vector2 shootVector = enemyPos-playerPos;
+            shootVector = new Vector2(horizontalProjectileSpeed * shootVector.x, verticalProjectileSpeed * shootVector.y);
+            GameObject newprojectile = Instantiate(projectile, transform);
+            newprojectile.GetComponent<Rigidbody2D>().velocity = shootVector;
+            Invoke("ShootBool", shootCooldown);
+        }
     }
 
     void ShootBool()
