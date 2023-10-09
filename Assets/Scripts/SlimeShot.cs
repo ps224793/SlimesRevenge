@@ -13,6 +13,11 @@ public class SlimeShot : MonoBehaviour
     private float horizontalProjectileSpeed;
     [SerializeField]
     private Camera playerCam;
+    [SerializeField]
+    private Rigidbody2D rb;
+    [SerializeField]
+    private float shootCooldown;
+    private bool canShoot = true;
 
 
     void Start()
@@ -22,17 +27,20 @@ public class SlimeShot : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButton(1)&&canShoot)
         {
+            canShoot = false;
             Vector2 mousePos = playerCam.ScreenToWorldPoint(Input.mousePosition);
-            GameObject newprojectile = Instantiate(projectile, new Vector2(transform.position.x, transform.position.y), Quaternion.identity, transform);
-            newprojectile.GetComponent<Rigidbody2D>().velocity = mousePos;
+            Vector2 shootVector = mousePos - rb.position;
+            shootVector = new Vector2(horizontalProjectileSpeed* shootVector.x, verticalProjectileSpeed+ shootVector.y);
+            GameObject newprojectile = Instantiate(projectile,transform);
+            newprojectile.GetComponent<Rigidbody2D>().velocity = shootVector;
+            Invoke("ShootBool", shootCooldown);
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    void ShootBool()
     {
-        
+        canShoot =true;
     }
 }
