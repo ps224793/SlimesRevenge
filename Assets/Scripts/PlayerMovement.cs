@@ -11,6 +11,8 @@ public class PlayerMovement2 : MonoBehaviour
     [SerializeField]
     private float decelSpeed;
     [SerializeField]
+    private float currentDecelSpeed;
+    [SerializeField]
     private float velPower;
     [SerializeField]
     private float friction;
@@ -105,7 +107,6 @@ public class PlayerMovement2 : MonoBehaviour
             caotyTimeCounter = 0;
         }
         #endregion
-        CheckStuck();
     }
 
     private void FixedUpdate()
@@ -115,17 +116,23 @@ public class PlayerMovement2 : MonoBehaviour
         // handles movement in the x axis.
         float targetSpeed = Input.GetAxis("Horizontal") * topSpeed;
         float speedDiff = targetSpeed - rb.velocity.x;
-        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? accelSpeed : decelSpeed;
+        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? accelSpeed : currentDecelSpeed;
         float movement = Mathf.Pow(Mathf.Abs(speedDiff) * accelRate, velPower) * Mathf.Sign(speedDiff);
         rb.AddForce(movement * Vector2.right);
         #endregion
-        #region Friction
+        #region Friction    
         //applies friction when grounded and no input is given.(wanting to stop)
         if (grounded == true && Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 0)
         {
             float amount = Mathf.Min(Mathf.Abs(rb.velocity.x), Mathf.Abs(friction));
             amount *= Mathf.Sign(rb.velocity.x);
             rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
+        }
+        #endregion
+        #region deceliration
+        if(currentDecelSpeed < decelSpeed)
+        {
+            currentDecelSpeed += 0.2f;
         }
         #endregion
 
@@ -169,6 +176,7 @@ public class PlayerMovement2 : MonoBehaviour
         }
         rb.AddForce(jumpVector * specialJumpPower, ForceMode2D.Impulse);
         specialJumping = true;
+        currentDecelSpeed = 0;
     }
 
     private void SetGravety()
@@ -192,13 +200,4 @@ public class PlayerMovement2 : MonoBehaviour
         }
     }
 
-    private void CheckStuck()
-    {
-        if (stuckCollider.IsTouchingLayers(groundLayer))
-        {
-            Transform transform = GetComponent<Transform>();
-            transform.position = new Vector2(0,10);
-            rb.velocity = Vector2.zero;
-        }
-    }
 }
