@@ -147,7 +147,7 @@ MonoBehaviour:
   groundCheckSize: 0.4
   groundLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 65
   grounded: 1
   standardGravety: 3
   fallGravety: 6
