@@ -31,6 +31,8 @@ public class PlayerMovement2 : MonoBehaviour
     [SerializeField]
     private LayerMask groundLayer;
     [SerializeField]
+    private LayerMask platformLayer;
+    [SerializeField]
     private bool grounded;
 
     [SerializeField]
@@ -52,12 +54,14 @@ public class PlayerMovement2 : MonoBehaviour
     private float bufferTime;
     private float bufferTimeCounter;
 
+    //stuck collider
+    [SerializeField]
+    private Collider2D stuckCollider;
+    [SerializeField]
+    private float resetPositionX;
+    [SerializeField]
+    private float resetPositionY;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     private void Update()
     {
@@ -101,6 +105,7 @@ public class PlayerMovement2 : MonoBehaviour
             caotyTimeCounter = 0;
         }
         #endregion
+        CheckStuck();
     }
 
     private void FixedUpdate()
@@ -129,9 +134,17 @@ public class PlayerMovement2 : MonoBehaviour
 
     private void CheckGrounded()
     {
-        if (Physics2D.OverlapCircle(groundcheckpoint.position, groundCheckSize, groundLayer) && rb.velocity.y < 0.1f)
+        if(rb.velocity.y < 0.1f)
         {
-            grounded = true;
+            if (Physics2D.OverlapCircle(groundcheckpoint.position, groundCheckSize, groundLayer) || Physics2D.OverlapCircle(groundcheckpoint.position, groundCheckSize, platformLayer))
+            {
+                grounded = true;
+
+            }
+            else
+            {
+                grounded = false;
+            }
         }
         else
         {
@@ -176,6 +189,16 @@ public class PlayerMovement2 : MonoBehaviour
         if (rb.velocity.y < maxFallSpeed)
         {
             rb.gravityScale = 0;
+        }
+    }
+
+    private void CheckStuck()
+    {
+        if (stuckCollider.IsTouchingLayers(groundLayer))
+        {
+            Transform transform = GetComponent<Transform>();
+            transform.position = new Vector2(0,10);
+            rb.velocity = Vector2.zero;
         }
     }
 }
