@@ -111,7 +111,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 11b72ac5f13bdd440b10d3f76c1f7860, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.9490196}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   apexGravety: 1
   apexVelocity: 1
   maxFallSpeed: -15
-  caotyTime: 0.4
+  caotyTime: 0.9
   bufferTime: 0
 --- !u!58 &5071268190050688201
 CircleCollider2D:
@@ -232,7 +232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 472637625629563918, guid: d69ce4f76737e5d4788a5182f41419f8, type: 3}
   verticalProjectileSpeed: 10
-  horizontalProjectileSpeed: 1.5
+  horizontalProjectileSpeed: 3
   playerCam: {fileID: 9119364149571068018}
   rb: {fileID: 5052602401443050627}
   shootCooldown: 0.7
@@ -280,7 +280,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.44705883, g: 0.9647775, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
