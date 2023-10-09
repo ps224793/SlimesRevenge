@@ -5,35 +5,33 @@ using UnityEngine;
 public class PlayerMovement2 : MonoBehaviour
 {
     [SerializeField]
-    private float topSpeed;
+    private float topSpeed;  //topspeed for moving 
     [SerializeField]
-    private float accelSpeed;
+    private float accelSpeed; //rate to accelerato to the target speed
     [SerializeField]
-    private float decelSpeed;
+    private float decelSpeed; //default rate to decellerate to target speed
     [SerializeField]
-    private float currentDecelSpeed;
+    private float currentDecelSpeed;  //actual rate to decellerate to target speed can be changed during play for things like jumping
     [SerializeField]
-    private float velPower;
+    private float velPower; // speed multiplier
     [SerializeField]
-    private float friction;
+    private float friction; // extra deceliration for when grounded
     [SerializeField]
-    private float jumpForce;
-    private bool jumping;
+    private float jumpForce; // force applied when performing a standerd jump
+    private bool jumping; // currently jumping?
     [SerializeField]
-    private float specialJumpPower;
+    private float specialJumpPower; //force applied whem performing a special jump
     private bool specialJumping;
     [SerializeField]
-    private Rigidbody2D rb;
+    private Rigidbody2D rb; // players riged boby
     [SerializeField]
-    private Camera playerCam;
+    private Camera playerCam; // the main camare attached to the player
     [SerializeField]
-    private Transform groundcheckpoint;
+    private Transform groundcheckpoint; // gameobject that checks for the ground (at bottem of player)
     [SerializeField]
-    private float groundCheckSize;
+    private float groundCheckSize; // radious 
     [SerializeField]
     private LayerMask groundLayer;
-    [SerializeField]
-    private LayerMask platformLayer;
     [SerializeField]
     private bool grounded;
 
@@ -55,14 +53,6 @@ public class PlayerMovement2 : MonoBehaviour
     [SerializeField]
     private float bufferTime;
     private float bufferTimeCounter;
-
-    //stuck collider
-    [SerializeField]
-    private Collider2D stuckCollider;
-    [SerializeField]
-    private float resetPositionX;
-    [SerializeField]
-    private float resetPositionY;
 
 
     private void Update()
@@ -141,17 +131,9 @@ public class PlayerMovement2 : MonoBehaviour
 
     private void CheckGrounded()
     {
-        if(rb.velocity.y < 0.1f)
+        if (rb.velocity.y < 0.1f && Physics2D.OverlapCircle(groundcheckpoint.position, groundCheckSize, groundLayer))
         {
-            if (Physics2D.OverlapCircle(groundcheckpoint.position, groundCheckSize, groundLayer) || Physics2D.OverlapCircle(groundcheckpoint.position, groundCheckSize, platformLayer))
-            {
-                grounded = true;
-
-            }
-            else
-            {
-                grounded = false;
-            }
+            grounded = true;
         }
         else
         {
