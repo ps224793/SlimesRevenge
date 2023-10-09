@@ -136,6 +136,7 @@ MonoBehaviour:
   topSpeed: 12
   accelSpeed: 3
   decelSpeed: 3
+  currentDecelSpeed: 0
   velPower: 0.9
   friction: 1
   jumpForce: 18
@@ -147,9 +148,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 1
-  platformLayer:
-    serializedVersion: 2
-    m_Bits: 64
   grounded: 1
   standardGravety: 3
   fallGravety: 6
@@ -158,9 +156,6 @@ MonoBehaviour:
   maxFallSpeed: -15
   caotyTime: 0.4
   bufferTime: 0
-  stuckCollider: {fileID: 0}
-  resetPositionX: 0
-  resetPositionY: 0
 --- !u!58 &5071268190050688201
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -240,6 +235,7 @@ MonoBehaviour:
   horizontalProjectileSpeed: 1.5
   playerCam: {fileID: 9119364149571068018}
   rb: {fileID: 5052602401443050627}
+  shootCooldown: 0.7
 --- !u!1 &8713864645158090708
 GameObject:
   m_ObjectHideFlags: 0
