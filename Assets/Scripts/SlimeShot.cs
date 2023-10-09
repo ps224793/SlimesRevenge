@@ -13,6 +13,8 @@ public class SlimeShot : MonoBehaviour
     private float horizontalProjectileSpeed;
     [SerializeField]
     private Camera playerCam;
+    [SerializeField]
+    private Rigidbody2D rb;
 
 
     void Start()
@@ -25,8 +27,10 @@ public class SlimeShot : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             Vector2 mousePos = playerCam.ScreenToWorldPoint(Input.mousePosition);
-            GameObject newprojectile = Instantiate(projectile, new Vector2(transform.position.x, transform.position.y), Quaternion.identity, transform);
-            newprojectile.GetComponent<Rigidbody2D>().velocity = mousePos;
+            Vector2 jumpVector = mousePos - rb.position;
+            jumpVector = new Vector2(horizontalProjectileSpeed*jumpVector.x, verticalProjectileSpeed+jumpVector.y);
+            GameObject newprojectile = Instantiate(projectile,transform);
+            newprojectile.GetComponent<Rigidbody2D>().velocity = jumpVector;
         }
     }
 
