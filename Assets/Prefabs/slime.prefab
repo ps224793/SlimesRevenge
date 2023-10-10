@@ -111,7 +111,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 11b72ac5f13bdd440b10d3f76c1f7860, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.9490196}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.83137256}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -155,7 +155,6 @@ MonoBehaviour:
   apexVelocity: 1
   maxFallSpeed: -15
   caotyTime: 0.9
-  bufferTime: 0
 --- !u!58 &5071268190050688201
 CircleCollider2D:
   m_ObjectHideFlags: 0

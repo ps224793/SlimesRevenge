@@ -48,7 +48,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     //grace values
     [SerializeField]
-    private float caotyTime;
+    private float caotyTime; // time to jump after leaving a platform
     private float caotyTimeCounter;
 
 
@@ -140,6 +140,7 @@ public class PlayerMovement2 : MonoBehaviour
 
     private void Jump()
     {
+        rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         jumping = true;
     }
@@ -153,6 +154,7 @@ public class PlayerMovement2 : MonoBehaviour
             float scaler = 3 / jumpVector.magnitude;
             jumpVector = jumpVector * scaler;
         }
+        rb.velocity = new Vector2(rb.velocity.x,0);
         rb.AddForce(jumpVector * specialJumpPower, ForceMode2D.Impulse);
         specialJumping = true;
         currentDecelSpeed = 0;
