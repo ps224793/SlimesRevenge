@@ -33,6 +33,7 @@ public class SlimeShot : MonoBehaviour
             Vector2 mousePos = playerCam.ScreenToWorldPoint(Input.mousePosition);
             Vector2 shootVector = mousePos - rb.position;
             shootVector = new Vector2(horizontalProjectileSpeed* shootVector.x, verticalProjectileSpeed+ shootVector.y);
+            shootVector += rb.velocity;
             GameObject newprojectile = Instantiate(projectile,transform);
             newprojectile.GetComponent<Rigidbody2D>().velocity = shootVector;
             Invoke("ShootBool", shootCooldown);

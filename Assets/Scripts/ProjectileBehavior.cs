@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileBehavior : MonoBehaviour
 {
-
+    private GameObject owner;
     // Update is called once per frame
     void Update()
     {
@@ -13,9 +13,24 @@ public class ProjectileBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag != "Player" && collision.tag != "Enemy" && collision.tag != "Barrier")
+        owner = gameObject.transform.parent.gameObject;
+        if (collision.tag== "Floor"||collision.tag=="Projectile")
         {
             Destroy(gameObject);
+            return;
         }
+        if (collision.gameObject != owner && collision.tag != "Barrier")
+        {
+            HealthController healthController = collision.gameObject.GetComponent<HealthController>();
+            healthController.Health--;
+            Destroy(gameObject);
+            return;
+        }
+        Invoke("OnDestroy",10);
+    }
+    private void OnDestroy()
+    {
+        Destroy(gameObject);
+        return;
     }
 }
