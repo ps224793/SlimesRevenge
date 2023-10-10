@@ -189,19 +189,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3339036259201581298, guid: 95bcd62815367224681894a56a5441b5, type: 3}
   m_PrefabInstance: {fileID: 1912179777}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1529987387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1529987386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 044c4d25f8ef5e146b69a311c034744a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 3
 --- !u!1001 &1912179777
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -254,49 +241,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: slime
       objectReference: {fileID: 0}
-    - target: {fileID: 7219280366322351556, guid: 95bcd62815367224681894a56a5441b5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7653044415563214941, guid: 95bcd62815367224681894a56a5441b5, type: 3}
-      propertyPath: m_RefResolutionX
-      value: 400
-      objectReference: {fileID: 0}
-    - target: {fileID: 8968058338913024325, guid: 95bcd62815367224681894a56a5441b5, type: 3}
-      propertyPath: maxShootvelocity
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8968058338913024325, guid: 95bcd62815367224681894a56a5441b5, type: 3}
-      propertyPath: minShootvelocity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9119364149571068018, guid: 95bcd62815367224681894a56a5441b5, type: 3}
-      propertyPath: m_Depth
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9119364149571068018, guid: 95bcd62815367224681894a56a5441b5, type: 3}
-      propertyPath: m_BackGroundColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9119364149571068018, guid: 95bcd62815367224681894a56a5441b5, type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9119364149571068018, guid: 95bcd62815367224681894a56a5441b5, type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9119364149571068018, guid: 95bcd62815367224681894a56a5441b5, type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.44705883
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3339036259201581298, guid: 95bcd62815367224681894a56a5441b5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1529987387}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95bcd62815367224681894a56a5441b5, type: 3}
 --- !u!1001 &3057820174344476589
 PrefabInstance:
