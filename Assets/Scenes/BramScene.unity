@@ -262,6 +262,14 @@ PrefabInstance:
       propertyPath: m_RefResolutionX
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 8968058338913024325, guid: 95bcd62815367224681894a56a5441b5, type: 3}
+      propertyPath: maxShootvelocity
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8968058338913024325, guid: 95bcd62815367224681894a56a5441b5, type: 3}
+      propertyPath: minShootvelocity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9119364149571068018, guid: 95bcd62815367224681894a56a5441b5, type: 3}
       propertyPath: m_Depth
       value: -1
