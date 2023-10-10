@@ -102,9 +102,12 @@ public class EnemyBehavior : MonoBehaviour
         if (canShoot)
         {
             canShoot = false;
-            Vector2 enemyPos = (Vector2)gameObject.transform.position;
+            Vector2 enemyPos = gameObject.transform.position;
+            //Debug.Log("Enemy: " + enemyPos);
             Vector2 playerPos = player.transform.position;
-            Vector2 shootVector = enemyPos-playerPos;
+            Debug.Log("player: " + playerPos);
+            Vector2 shootVector = playerPos-enemyPos;
+            //Debug.Log("shoot: " + shootVector);
             shootVector = new Vector2(horizontalProjectileSpeed * shootVector.x, verticalProjectileSpeed * shootVector.y);
             GameObject newprojectile = Instantiate(projectile, transform);
             newprojectile.GetComponent<Rigidbody2D>().velocity = shootVector;

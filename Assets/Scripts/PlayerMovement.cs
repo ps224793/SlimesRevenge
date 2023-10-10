@@ -36,23 +36,20 @@ public class PlayerMovement2 : MonoBehaviour
     private bool grounded;
 
     [SerializeField]
-    private float standardGravety;
+    private float standardGravety; //gravety when jumping
     [SerializeField]
-    private float fallGravety;
+    private float fallGravety; // gravety when falling  
     [SerializeField]
-    private float apexGravety;
+    private float apexGravety;  // gravety at the apex of the jump (lower to make it feel more controlled)
     [SerializeField]
-    private float apexVelocity;
+    private float apexVelocity; // speed at witch the apex gravety is applied
     [SerializeField]
-    private float maxFallSpeed;
+    private float maxFallSpeed; // the maximum speed for falling
 
     //grace values
     [SerializeField]
     private float caotyTime;
     private float caotyTimeCounter;
-    [SerializeField]
-    private float bufferTime;
-    private float bufferTimeCounter;
 
 
     private void Update()
