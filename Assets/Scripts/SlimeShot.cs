@@ -18,6 +18,10 @@ public class SlimeShot : MonoBehaviour
     [SerializeField]
     private float shootCooldown;
     private bool canShoot = true;
+    [SerializeField]
+    private float maxShootvelocity;
+    [SerializeField]
+    private float minShootvelocity;
 
 
     void Start()
@@ -33,6 +37,18 @@ public class SlimeShot : MonoBehaviour
             Vector2 mousePos = playerCam.ScreenToWorldPoint(Input.mousePosition);
             Vector2 shootVector = mousePos - rb.position;
             shootVector = new Vector2(horizontalProjectileSpeed* shootVector.x, verticalProjectileSpeed+ shootVector.y);
+            shootVector += rb.velocity;
+            if (shootVector.magnitude >= maxShootvelocity)
+            {
+                float scaler = 2 / shootVector.magnitude;
+                shootVector = shootVector * scaler;
+            }
+            else if (shootVector.magnitude <= minShootvelocity)
+            {
+                float scaler = 2 * shootVector.magnitude;
+                shootVector = shootVector * scaler;
+            }
+
             GameObject newprojectile = Instantiate(projectile,transform);
             newprojectile.GetComponent<Rigidbody2D>().velocity = shootVector;
             Invoke("ShootBool", shootCooldown);

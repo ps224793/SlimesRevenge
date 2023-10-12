@@ -27,6 +27,10 @@ public class EnemyBehavior : MonoBehaviour
     private float shootCooldown;
     private bool canShoot=true;
 
+    [SerializeField]
+    private float maxShootvelocity;
+    [SerializeField]
+    private float minShootvelocity;
     void Start()
     {
         //gets tag from gameobject
@@ -103,12 +107,20 @@ public class EnemyBehavior : MonoBehaviour
         {
             canShoot = false;
             Vector2 enemyPos = gameObject.transform.position;
-            //Debug.Log("Enemy: " + enemyPos);
             Vector2 playerPos = player.transform.position;
-            Debug.Log("player: " + playerPos);
             Vector2 shootVector = playerPos-enemyPos;
-            //Debug.Log("shoot: " + shootVector);
             shootVector = new Vector2(horizontalProjectileSpeed * shootVector.x, verticalProjectileSpeed * shootVector.y);
+            if (shootVector.magnitude >= maxShootvelocity)
+            {
+                float scaler = 2 / shootVector.magnitude;
+                shootVector = shootVector * scaler;
+            }
+            else if (shootVector.magnitude <= minShootvelocity)
+            {
+                float scaler = 2 * shootVector.magnitude;
+                shootVector = shootVector * scaler;
+            }
+
             GameObject newprojectile = Instantiate(projectile, transform);
             newprojectile.GetComponent<Rigidbody2D>().velocity = shootVector;
             Invoke("ShootBool", shootCooldown);
