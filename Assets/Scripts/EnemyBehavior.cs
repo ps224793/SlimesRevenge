@@ -99,9 +99,9 @@ public class EnemyBehavior : MonoBehaviour
             Vector2 enemyPos = gameObject.transform.position;
             Vector2 playerPos = player.transform.position;
             Vector2 knockbackVector = playerPos - enemyPos;
-            knockbackVector = new Vector2();
+            knockbackVector = knockbackVector * knockbackMultiplier;
             Debug.Log(knockbackVector.magnitude);
-            playerRB.AddForce(knockbackMultiplier * knockbackVector);
+            playerRB.AddForce(knockbackMultiplier * knockbackVector, ForceMode2D.Impulse);
         }
     }
 

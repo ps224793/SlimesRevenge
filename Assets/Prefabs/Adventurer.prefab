@@ -171,9 +171,9 @@ MonoBehaviour:
   horizontalProjectileSpeed: 3
   player: {fileID: 0}
   shootCooldown: 2
-  maxShootvelocity: 0
-  minShootvelocity: 0
-  knockbackMultiplier: 100
+  maxShootvelocity: 1
+  minShootvelocity: 1
+  knockbackMultiplier: 4
 --- !u!114 &5818968814122965795
 MonoBehaviour:
   m_ObjectHideFlags: 0
