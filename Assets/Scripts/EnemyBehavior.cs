@@ -31,9 +31,14 @@ public class EnemyBehavior : MonoBehaviour
     private float maxShootvelocity;
     [SerializeField]
     private float minShootvelocity;
+
+    private Rigidbody2D playerRB;
+
+    [SerializeField]
+    private float knockbackMultiplier;
     void Start()
     {
-        //gets tag from gameobject
+        playerRB = player.GetComponent<Rigidbody2D>();
         rb2d = GetComponentInParent<Rigidbody2D>();
     }
 
@@ -85,9 +90,18 @@ public class EnemyBehavior : MonoBehaviour
     {
         //If enemy collides with another object; change direction value
 
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Barrier")
+        if ( collision.gameObject.tag == "Barrier")
         {
             collisionTrigger();
+        }
+        else if ( collision.gameObject.tag == "Player")
+        {
+            Vector2 enemyPos = gameObject.transform.position;
+            Vector2 playerPos = player.transform.position;
+            Vector2 knockbackVector = playerPos - enemyPos;
+            knockbackVector = knockbackVector * knockbackMultiplier;
+            Debug.Log(knockbackVector.magnitude);
+            playerRB.AddForce(knockbackMultiplier * knockbackVector, ForceMode2D.Impulse);
         }
     }
 
@@ -110,16 +124,16 @@ public class EnemyBehavior : MonoBehaviour
             Vector2 playerPos = player.transform.position;
             Vector2 shootVector = playerPos-enemyPos;
             shootVector = new Vector2(horizontalProjectileSpeed * shootVector.x, verticalProjectileSpeed * shootVector.y);
-            if (shootVector.magnitude >= maxShootvelocity)
-            {
-                float scaler = 2 / shootVector.magnitude;
-                shootVector = shootVector * scaler;
-            }
-            else if (shootVector.magnitude <= minShootvelocity)
-            {
-                float scaler = 2 * shootVector.magnitude;
-                shootVector = shootVector * scaler;
-            }
+            //if (shootVector.magnitude >= maxShootvelocity)
+            //{
+            //    float scaler = 2 / shootVector.magnitude;
+            //    shootVector = shootVector * scaler;
+            //}
+            //else if (shootVector.magnitude <= minShootvelocity)
+            //{
+            //    float scaler = 2 * shootVector.magnitude;
+            //    shootVector = shootVector * scaler;
+            //}
 
             GameObject newprojectile = Instantiate(projectile, transform);
             newprojectile.GetComponent<Rigidbody2D>().velocity = shootVector;
