@@ -8,6 +8,8 @@ TagManager:
   - Barrier
   - Enemy
   - Projectile
+  - Platform
+  - RangeCollider
   layers:
   - Default
   - TransparentFX

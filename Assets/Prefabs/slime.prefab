@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 5052602401443050627}
   - component: {fileID: 8968058338913024325}
   - component: {fileID: 8107259109387890067}
+  - component: {fileID: -3610941492056309866}
   m_Layer: 3
   m_Name: slime
   m_TagString: Player
@@ -250,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 472637625629563918, guid: d69ce4f76737e5d4788a5182f41419f8, type: 3}
-  verticalProjectileSpeed: 10
+  verticalProjectileSpeed: 12
   horizontalProjectileSpeed: 3
   playerCam: {fileID: 9119364149571068018}
   rb: {fileID: 5052602401443050627}
@@ -270,6 +271,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
+--- !u!114 &-3610941492056309866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3339036259201581298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75fe516a3a92616428dfc9a2f9b099bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  platforms: {fileID: 0}
+  duration: 0.25
 --- !u!1 &5942631554829958649
 GameObject:
   m_ObjectHideFlags: 0
