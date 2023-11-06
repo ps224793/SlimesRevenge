@@ -5,11 +5,6 @@ using UnityEngine;
 public class ProjectileBehavior : MonoBehaviour
 {
     private GameObject owner;
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -19,7 +14,7 @@ public class ProjectileBehavior : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        if (owner.tag != collision.tag && collision.tag != "Barrier" && collision.tag != "Platform")
+        if (owner.tag != collision.tag && collision.tag != "Barrier" && collision.tag != "Platform" && collision.tag != "RangeCollider")
         {
             HealthController healthController = collision.gameObject.GetComponent<HealthController>();
             healthController.Health--;

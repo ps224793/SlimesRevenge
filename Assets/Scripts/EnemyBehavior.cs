@@ -33,6 +33,7 @@ public class EnemyBehavior : MonoBehaviour
     private float minShootvelocity;
 
     private Rigidbody2D playerRB;
+    public bool inRange;
 
     [SerializeField]
     private float knockbackMultiplier;
@@ -117,23 +118,14 @@ public class EnemyBehavior : MonoBehaviour
 
     private void Shoot()
     {
-        if (canShoot)
+        if (canShoot && inRange)
         {
             canShoot = false;
             Vector2 enemyPos = gameObject.transform.position;
             Vector2 playerPos = player.transform.position;
             Vector2 shootVector = playerPos-enemyPos;
             shootVector = new Vector2(horizontalProjectileSpeed * shootVector.x, verticalProjectileSpeed * shootVector.y);
-            //if (shootVector.magnitude >= maxShootvelocity)
-            //{
-            //    float scaler = 2 / shootVector.magnitude;
-            //    shootVector = shootVector * scaler;
-            //}
-            //else if (shootVector.magnitude <= minShootvelocity)
-            //{
-            //    float scaler = 2 * shootVector.magnitude;
-            //    shootVector = shootVector * scaler;
-            //}
+            shootVector += rb2d.velocity;
 
             GameObject newprojectile = Instantiate(projectile, transform);
             newprojectile.GetComponent<Rigidbody2D>().velocity = shootVector;

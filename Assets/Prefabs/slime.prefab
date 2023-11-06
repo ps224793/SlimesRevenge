@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 472637625629563918, guid: d69ce4f76737e5d4788a5182f41419f8, type: 3}
-  verticalProjectileSpeed: 10
+  verticalProjectileSpeed: 12
   horizontalProjectileSpeed: 3
   playerCam: {fileID: 9119364149571068018}
   rb: {fileID: 5052602401443050627}

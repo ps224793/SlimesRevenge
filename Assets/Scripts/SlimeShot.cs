@@ -38,17 +38,6 @@ public class SlimeShot : MonoBehaviour
             Vector2 shootVector = mousePos - rb.position;
             shootVector = new Vector2(horizontalProjectileSpeed* shootVector.x, verticalProjectileSpeed+ shootVector.y);
             shootVector += rb.velocity;
-            Debug.Log(shootVector.magnitude);
-
-            //if (shootVector.magnitude >= maxShootvelocity)
-            //{
-            //    float scaler = maxShootvelocity / shootVector.magnitude;
-            //    shootVector = shootVector * scaler;
-            //}
-            //else if (shootVector.magnitude <= minShootvelocity)
-            //{
-            //    shootVector = (shootVector / shootVector)*minShootvelocity;
-            //}
 
             GameObject newprojectile = Instantiate(projectile,transform);
             newprojectile.GetComponent<Rigidbody2D>().velocity = shootVector;

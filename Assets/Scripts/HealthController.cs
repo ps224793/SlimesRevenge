@@ -9,6 +9,8 @@ public class HealthController : MonoBehaviour
 
     [SerializeField]
     private int health;
+
+    private SceneControler sceneControler = new SceneControler();
     public int Health
     {
         get
@@ -28,8 +30,7 @@ public class HealthController : MonoBehaviour
         {
             if (gameObject.tag == "Player")
             {
-                transform.position = new Vector2(0, 0);
-                health = 3;
+                sceneControler.ResetActiveScene();
             }
             else
             {
