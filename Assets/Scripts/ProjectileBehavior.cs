@@ -14,7 +14,7 @@ public class ProjectileBehavior : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         owner = gameObject.transform.parent.gameObject;
-        if (collision.tag== "Floor"||collision.tag=="Projectile")
+        if (collision.tag== "Floor"|| collision.tag == "Platform" || collision.tag=="Projectile")
         {
             Destroy(gameObject);
             return;
