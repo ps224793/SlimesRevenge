@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 3
   m_Name: groundCheckPoint
   m_TagString: Player
-  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2715166293950795648}
   - component: {fileID: 4782461628841780394}
+  - component: {fileID: 8310534525767020529}
   - component: {fileID: 2731260375576666807}
   - component: {fileID: 5497022086921661021}
   - component: {fileID: 5071268190050688201}
@@ -113,7 +114,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: 11b72ac5f13bdd440b10d3f76c1f7860, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.83137256}
   m_FlipX: 0
@@ -125,6 +126,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8310534525767020529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3339036259201581298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bfd399236a5c134599df311b1d58cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2731260375576666807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +173,7 @@ MonoBehaviour:
   currentDecelSpeed: 0
   velPower: 0.9
   friction: 1
-  jumpForce: 18
+  jumpForce: 24
   specialJumpPower: 8
   rb: {fileID: 5052602401443050627}
   playerCam: {fileID: 9119364149571068018}
@@ -168,14 +181,14 @@ MonoBehaviour:
   groundCheckSize: 0.4
   groundLayer:
     serializedVersion: 2
-    m_Bits: 65
+    m_Bits: 320
   grounded: 1
   standardGravety: 3
   fallGravety: 6
   apexGravety: 1
   apexVelocity: 1
   maxFallSpeed: -15
-  caotyTime: 0.9
+  caotyTime: 0.2
 --- !u!58 &5071268190050688201
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -284,7 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platforms: {fileID: 0}
-  duration: 0.25
+  duration: 0.3
 --- !u!1 &5942631554829958649
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,7 +451,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 11.218234
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -475,8 +488,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssetsPPU: 16
-  m_RefResolutionX: 400
-  m_RefResolutionY: 180
+  m_RefResolutionX: 600
+  m_RefResolutionY: 270
   m_UpscaleRT: 0
   m_PixelSnapping: 0
   m_CropFrameX: 0
