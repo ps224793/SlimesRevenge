@@ -14,7 +14,7 @@ public class ProjectileBehavior : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        if (owner.tag != collision.tag && collision.tag != "Barrier" && collision.tag != "Platform" && collision.tag != "RangeCollider")
+        else if (owner.tag != collision.tag && collision.tag == "Player" || owner.tag != collision.tag && collision.tag == "Enemy")
         {
             HealthController healthController = collision.gameObject.GetComponent<HealthController>();
             healthController.Health--;

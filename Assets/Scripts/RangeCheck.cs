@@ -22,7 +22,10 @@ public class RangeCheck : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            gameObject.GetComponentInParent<EnemyBehavior>().inRange = false;
+            if (gameObject != null)
+            {
+                gameObject.GetComponentInParent<EnemyBehavior>().inRange = false;
+            }
         }
     }
 }
