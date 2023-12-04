@@ -24,7 +24,7 @@ public class RangeCheck : MonoBehaviour
         {
             if (gameObject != null)
             {
-                gameObject.GetComponentInParent<EnemyBehavior>().inRange = false;
+                gameObject.GetComponentInParent<EnemyBehavior>().inRange = false;   
             }
         }
     }
