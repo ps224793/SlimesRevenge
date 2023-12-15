@@ -82,7 +82,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         //If enemy collides with another object; change direction value
 
-        if (collision.tag == "Player" || collision.tag == "Barrier")
+        if (collision.tag == "Barrier")
         {
             collisionTrigger();
         }

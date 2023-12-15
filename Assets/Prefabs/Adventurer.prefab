@@ -227,8 +227,8 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
+  m_Interpolate: 2
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &8382056467531425354
@@ -250,7 +250,7 @@ MonoBehaviour:
   projectile: {fileID: 472637625629563918, guid: 4dc3b62598735b54ab632228512cfe5f, type: 3}
   verticalProjectileSpeed: 3
   horizontalProjectileSpeed: 3
-  player: {fileID: 3339036259201581298, guid: 95bcd62815367224681894a56a5441b5, type: 3}
+  player: {fileID: 0}
   shootCooldown: 2
   maxShootvelocity: 1
   minShootvelocity: 1
