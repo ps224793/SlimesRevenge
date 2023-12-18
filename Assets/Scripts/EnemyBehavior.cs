@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class EnemyBehavior : MonoBehaviour
 {
-    private float directionTimer = 0;
-    [SerializeField]
-    public float directionTimerGoal = 5;
     private Rigidbody2D rb2d;
     [SerializeField]
     public float maxVelocity = 1;
@@ -43,34 +40,19 @@ public class EnemyBehavior : MonoBehaviour
         rb2d = GetComponentInParent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // Counts up directionTimer
-        //directionTimer += Time.deltaTime;
-
-        //// Randomizes enemy direction when TimerGoal is reached
-        //if (directionTimer >= directionTimerGoal)
-        //{
-        //    direction = Random.Range(-1, 1);
-        //    if (direction == 0)
-        //    {
-        //        direction = 1;
-        //    }
-        //    directionTimer = 0;
-        //}
-
-    }
     private void FixedUpdate()
     {
         Shoot();
 
-        //moves enemy
+        //Beweegt de vijand met een snelheid van speed*direction
         rb2d.velocity = new Vector2(speed * direction, rb2d.velocity.y);
+        //Als de velocity lager is dan de negatieve maxVelocity zet deze dan gelijk aan de negatieve maxVelocity
         if (rb2d.velocity.x < -maxVelocity)
         {
             rb2d.velocity = new Vector2(-maxVelocity, rb2d.velocity.y);
         }
+        //Als de velocity hoger is dan de maxVelocity zet deze dan gelijk aan de maxVelocity
+
         if (rb2d.velocity.x > maxVelocity)
         {
             rb2d.velocity = new Vector2(maxVelocity, rb2d.velocity.y);
@@ -80,44 +62,51 @@ public class EnemyBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //If enemy collides with another object; change direction value
+        //Als dit object een barriere raakt wordt de collision trigger method uitgevoerd
 
         if (collision.tag == "Barrier")
         {
-            collisionTrigger();
+            CollisionTrigger();
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //If enemy collides with another object; change direction value
+        //Als dit object een barriere raakt wordt de collision trigger method uitgevoerd
 
         if ( collision.gameObject.tag == "Barrier")
         {
-            collisionTrigger();
+            CollisionTrigger();
         }
+        // Als de speler dit object raakt wordt de vector2 tussen de twee objecten berekend
+        // Deze wordt vermenigvuldigd met een knockbackMultiplier
+        // Deze vector wordt vervolgens als kracht toegevoegd aan de speler
+        // Dit wordt gedaaan met Forcemode2d Impluse om een ommidelijke kracht te genereren
         else if ( collision.gameObject.tag == "Player")
         {
             Vector2 enemyPos = gameObject.transform.position;
             Vector2 playerPos = player.transform.position;
             Vector2 knockbackVector = playerPos - enemyPos;
             knockbackVector = knockbackVector * knockbackMultiplier;
-            Debug.Log(knockbackVector.magnitude);
-            playerRB.AddForce(knockbackMultiplier * knockbackVector, ForceMode2D.Impulse);
+            playerRB.AddForce(knockbackVector, ForceMode2D.Impulse);
         }
     }
 
-    private void collisionTrigger()
+    private void CollisionTrigger()
     {
-        if (direction == -1)
-        {
-            direction = 1;
-            return;
-        }
-        direction = -1;
+        //Deze methode zet de direction int gelijk aan 1 of -1
+        direction *= -1;
     }
 
     private void Shoot()
     {
+        // Als canShoot en inRange true zijn
+        // Zet canShoot op false
+        // Bereken dan de vector2 tussen de speler en dit object dit heet nu de shootVector
+        // Vemenigvuldig deze volgens met de horizontal en vertical projection speeds
+        // Voeg dan nog de huidige velocity van dit object toe aan deze vector
+        // Maak een nieuw projectiel aan en zet de transform gelijk aan de transform van dit object
+        // Zet de velocity van dit nieuw projectiel gelijk aan de shootVector
+        // Zet een timer aan die na shootCooldown aantal seconde de ShootBool Methode aanroept
         if (canShoot && inRange)
         {
             canShoot = false;

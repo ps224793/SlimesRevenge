@@ -9,24 +9,27 @@ public class FallingMovement : MonoBehaviour
 
     [SerializeField]
     private float duration;
-    // Start is called before the first frame update
 
-    // Update is called once per frame
     void Update()
     {
+        // Bij verticale input van -1 (naar beneden) 
+        // Zet dan de collider van alle platformen uit
         if (Input.GetAxisRaw("Vertical")==-1)
         {
             platforms.GetComponent<Collider2D>().enabled = false;
+            // Na duration aantal seconden wordt de Enable method aangeroepen
             Invoke("Enable",duration);
         }
     }
     private void Enable()
     {
+        // Geen negatieve verticale input meer heeft wordt de collider van de platformen weer aangezet
         if (Input.GetAxisRaw("Vertical") != -1)
         {
             platforms.GetComponent<Collider2D>().enabled = true;
             return;
         }
+        // Als de speler nog wel negatieve verticale input geeft dan wordt deze methode na duration aantal seconde weer uitgevoerd
         Invoke("Enable", duration);
     }
 }
