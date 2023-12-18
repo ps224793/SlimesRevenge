@@ -50,7 +50,7 @@ GameObject:
   - component: {fileID: 8107259109387890067}
   - component: {fileID: -3610941492056309866}
   m_Layer: 3
-  m_Name: slime
+  m_Name: Slime
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
