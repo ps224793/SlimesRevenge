@@ -103,7 +103,15 @@ public class PlayerMovement2 : MonoBehaviour
         // handles movement in the x axis.
         float targetSpeed = Input.GetAxis("Horizontal") * topSpeed;
         float speedDiff = targetSpeed - rb.velocity.x;
-        float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? accelSpeed : currentDecelSpeed;
+        float accelRate;
+        if (Mathf.Abs(targetSpeed) > 0.01f)
+        {
+            accelRate = accelSpeed;
+        }
+        else
+        {
+            accelRate = currentDecelSpeed;
+        }
         float movement = Mathf.Pow(Mathf.Abs(speedDiff) * accelRate, velPower) * Mathf.Sign(speedDiff);
         rb.AddForce(movement * Vector2.right);
         #endregion
@@ -117,6 +125,7 @@ public class PlayerMovement2 : MonoBehaviour
         }
         #endregion
         #region deceliration
+        //slowly return deceleration when it is low. (special jumping sets it to a low value te make horizontal jumps better)
         if(currentDecelSpeed < decelSpeed)
         {
             currentDecelSpeed += 0.2f;
@@ -145,10 +154,12 @@ public class PlayerMovement2 : MonoBehaviour
         jumping = true;
     }
 
+    //jumpo in the direction of the mouse
     private void SpecialJump()
     {
         Vector2 mousePos = playerCam.ScreenToWorldPoint(Input.mousePosition);
         Vector2 jumpVector = mousePos - rb.position;
+        //limits the jump force 
         if (jumpVector.magnitude > 3)
         {
             float scaler = 3 / jumpVector.magnitude;
@@ -160,6 +171,7 @@ public class PlayerMovement2 : MonoBehaviour
         currentDecelSpeed = 0;
     }
 
+    //manages gravety for the player. higher when falling and lowest when at apex of jump. turns gravety off when reaching max fall speed.
     private void SetGravety()
     {
         if (rb.velocity.y < -apexVelocity)
