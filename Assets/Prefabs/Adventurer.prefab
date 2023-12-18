@@ -243,7 +243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2629fe112c684b649b22768c554123f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  directionTimerGoal: 10
   maxVelocity: 2
   speed: 2
   direction: 1
@@ -255,7 +254,7 @@ MonoBehaviour:
   maxShootvelocity: 1
   minShootvelocity: 1
   inRange: 0
-  knockbackMultiplier: 4
+  knockbackMultiplier: 8
 --- !u!114 &5818968814122965795
 MonoBehaviour:
   m_ObjectHideFlags: 0
